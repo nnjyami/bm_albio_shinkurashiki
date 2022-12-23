@@ -5,11 +5,13 @@ import Logo from '../components/Logo'
 
 function Nav(props) {
   const navIndexStyle = ["navIndex"]
-  if (props.showContentsNav) navIndexStyle.push("isHide")
-
   const hambugerMenuClass = []
   const navMapClass = ['navMap']
-  if (props.showContentsNav) hambugerMenuClass.push('isClose')
+  if (props.showContentsNav){
+    hambugerMenuClass.push('isClose')
+    navIndexStyle.push("isHide")
+    navMapClass.push("isHide")
+  }
   if (props.isReady) {
     hambugerMenuClass.push('isReady')
     navMapClass.push('isReady')
@@ -55,6 +57,7 @@ const headerStyle = css`
     &.navMap {
       cursor: pointer;
       font-size: 14px;
+      opacity: 1;
       padding-top: 10px;
 
       transform: translateX(200%);
@@ -63,6 +66,9 @@ const headerStyle = css`
 
       &.isReady {
         transform: translateX(0);
+      }
+      &.isHide {
+        opacity: 0;
       }
     }
   }

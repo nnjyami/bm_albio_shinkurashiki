@@ -20,27 +20,40 @@ function ContentsNav(props) {
         <li className="contentsNav"
           css={contentsNavLink}
           onClick={() => props.modeChangeHandler('WALK_THROUGH')}>
+          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>ALBIO GARDEN</span>
+          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>MISAWAの分譲マンション/アルビオ・ガーデン</span></p>
+        </li>
+        <li className="contentsNav"
+          css={contentsNavLink}
+          onClick={() => props.modeChangeHandler('WALK_THROUGH')}>
           <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Concept</span>
           <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>コンセプト</span></p>
         </li>
         <li className="contentsNav" css={contentsNavLink}>
           <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Room Plan</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>ループプラン</span></p>
+          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>4種類のルームプラン</span></p>
+        </li>
+        <li className="contentsNav" css={contentsNavLink}>
+          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Room Tour</span>
+          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>ルームツアー</span></p>
         </li>
         <li className="contentsNav"
           css={contentsNavLink}
           onClick={() => props.modeChangeHandler('TREES_PLANTS')}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Color Options</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>カラーオプション</span></p>
+          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Interior Color Options</span>
+          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>選べるカラーオプション</span></p>
         </li>
         <li className="contentsNav" css={contentsNavLink}>
           <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Facilities</span>
           <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>設備</span></p>
         </li>
         <li className="contentsNav" css={contentsNavLink}>
+          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Location</span>
+          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>ロケーション</span></p>
+        </li>
+        <li className="contentsNav" css={contentsNavLink}>
           <ul className="contentsSubLinks">
             <li><a href="https://misawa-chugoku.jp/albio/shinkurashikiekimae/outline/">→ 物件概要</a></li>
-            <li><a href="https://misawa-chugoku.jp/albio/brand/">→ アルビオ・ガーデンについて</a></li>
           </ul>
           <ul className="contentsCV">
             <li><a className="contentsCV_btn" href="https://www.misawa.co.jp/jsp/mgform/63401/4988/index.jsp?_ebx=28kodhecilt.1671168029.7ohdtvl">資料請求</a></li>
@@ -122,9 +135,10 @@ const contentsNav = css`
     color: #FFF;
     font-size: 14px;
     font-weight: bold;
-    margin: ${Config.grid * 3}px 0 ${Config.grid * 4}px;
-    padding: ${Config.grid * 4}px ${Config.grid * 4}px 0;
+    margin: 0 0 ${Config.grid * 3}px;
+    padding: 0 ${Config.grid * 3}px 0;
     position: relative;
+    text-align: center;
     z-index: 200;
     .st0 {
       fill: #FFF;
@@ -161,7 +175,7 @@ const contentsNavLink = css`
   font-size: 12px;
   list-style: none;
   margin: 0;
-  padding: ${Config.grid * 0.5}px ${Config.grid * 4}px 0;
+  padding: ${Config.grid * 0.5}px ${Config.grid * 3}px 0;
   position: relative;
   z-index: 320;
 `
