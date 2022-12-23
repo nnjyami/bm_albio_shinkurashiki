@@ -1,40 +1,49 @@
 import { jsx, css, keyframes } from '@emotion/react'
+import { ReactSVG } from 'react-svg'
+
 import Config from '../Config'
+
+import LogoSvg from '../assets/logo.svg'
 
 function ContentsNav(props) {
   const navClass = ["contentsNav"]
   if (props.showContentsNav) navClass.push("isShow")
   return (
     <nav className={navClass.join(' ')} css={contentsNav}>
-      <p className="contentsNavTitle">レ・ジェイドシティ橋本<br />プロムナードツアー</p>
+      <p className="contentsNavTitle">
+        <ReactSVG 
+          style={{ fill: "#FFF!important" }}
+          className="svg" 
+          src={LogoSvg} />
+      </p>
       <ul>
         <li className="contentsNav"
           css={contentsNavLink}
           onClick={() => props.modeChangeHandler('WALK_THROUGH')}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Walk Through</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>プロムナードツアー</span></p>
+          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Concept</span>
+          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>コンセプト</span></p>
         </li>
         <li className="contentsNav" css={contentsNavLink}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Time & Seasons</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>時間と四季の移ろいを感じられるプロムナード</span></p>
+          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Room Plan</span>
+          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>ループプラン</span></p>
         </li>
         <li className="contentsNav"
           css={contentsNavLink}
           onClick={() => props.modeChangeHandler('TREES_PLANTS')}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Trees & Plants</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>多彩な植栽計画</span></p>
+          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Color Options</span>
+          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>カラーオプション</span></p>
         </li>
         <li className="contentsNav" css={contentsNavLink}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Location</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>街へつながる</span></p>
+          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Facilities</span>
+          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>設備</span></p>
         </li>
         <li className="contentsNav" css={contentsNavLink}>
           <ul className="contentsSubLinks">
-            <li><a href="https://vs.qlea.com/escon/hashimoto/">→ 物件概要</a></li>
-            <li><a href="https://vs.qlea.com/escon/hashimoto/map/">→ 現地案内図</a></li>
+            <li><a href="https://misawa-chugoku.jp/albio/shinkurashikiekimae/outline/">→ 物件概要</a></li>
+            <li><a href="https://misawa-chugoku.jp/albio/brand/">→ アルビオ・ガーデンについて</a></li>
           </ul>
           <ul className="contentsCV">
-            <li><a className="contentsCV_btn" href="https://fcgb.f.msgs.jp/webapp/form/21689_fcgb_215/index.do?_ga=2.159952958.2031805631.1669385536-757392096.1668867058&ktr_rpt=1">資料請求</a></li>
+            <li><a className="contentsCV_btn" href="https://www.misawa.co.jp/jsp/mgform/63401/4988/index.jsp?_ebx=28kodhecilt.1671168029.7ohdtvl">資料請求</a></li>
           </ul>
         </li>
       </ul>
@@ -113,10 +122,13 @@ const contentsNav = css`
     color: #FFF;
     font-size: 14px;
     font-weight: bold;
-    margin: ${Config.grid * 5}px 0 ${Config.grid * 2}px;
+    margin: ${Config.grid * 3}px 0 ${Config.grid * 4}px;
     padding: ${Config.grid * 4}px ${Config.grid * 4}px 0;
     position: relative;
     z-index: 200;
+    .st0 {
+      fill: #FFF;
+    }
   }
   .contentsSubLinks,
   .contentsCV {

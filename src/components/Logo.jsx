@@ -16,7 +16,7 @@ function Logo(props) {
 const logoStyle = css`
   display: inline-block;
   margin: 0;
-  width: 70px;
+  width: 180px;
   z-index: 600;
 
   opacity: 0;
@@ -31,7 +31,7 @@ const logoStyle = css`
   }
   img {
     opacity: 0.9;
-    width: 70px;
+    width: 180px;
   }
 `
 

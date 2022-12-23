@@ -25,7 +25,7 @@ function Nav(props) {
         <li className={navIndexStyle.join(' ')}><Logo isReady={props.isReady} /></li>
         <li
           className={navMapClass.join(' ')}
-          onClick={() => props.toggleMapVisible()}>Map</li>
+          onClick={() => props.toggleMapVisible()}>間取り</li>
       </ul>
     </header>
   )
@@ -43,19 +43,23 @@ const headerStyle = css`
     z-index: 100;
   }
   li {
-    color: #FFF;
+    color: ${Config.color.main};
     font-family: ${Config.font.family};
     font-weight: ${Config.font.weight};
     font-style: ${Config.font.style};
     text-shadow: 0 0 3px rgba(0,0,0,.2);
     list-style: none;
     &.navIndex {
-      width: 70px;
+      opacity: 1;
+      width: 180px;
+      &.isHide {
+        opacity: 0;
+      }
     }
     &.navMap {
       cursor: pointer;
-      font-size: 18px;
-      padding-top: 4px;
+      font-size: 16px;
+      padding-top: 10px;
 
       transform: translateX(200%);
       transition: transform 850ms ease-out;
@@ -89,7 +93,7 @@ const hambugerMenu = css`
 
   &::before,
   &::after {
-    background-color: rgba(255,255,255,.85);
+    background-color: ${Config.color.main};
     content: "";
     display: inline-block;
     height: ${Config.grid * 4}px;
@@ -108,6 +112,10 @@ const hambugerMenu = css`
     transform: translate(50%,0) rotate(-90deg);
   }
   &.isClose {
+    &::before,
+    &::after {
+      background-color: #FFF;
+    }
     &::before {
       top: 50%;
       transform: translate(-50%,-50%) rotate(60deg);
