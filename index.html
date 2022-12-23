@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <script>
+    (function (d) {
+      var config = {
+        kitId: 'zkr5bwq',
+        scriptTimeout: 3000,
+        async: true
+      },
+        h = d.documentElement, t = setTimeout(function () { h.className = h.className.replace(/\bwf-loading\b/g, "") + " wf-inactive"; }, config.scriptTimeout), tk = d.createElement("script"), f = false, s = d.getElementsByTagName("script")[0], a; h.className += " wf-loading"; tk.src = 'https://use.typekit.net/' + config.kitId + '.js'; tk.async = true; tk.onload = tk.onreadystatechange = function () { a = this.readyState; if (f || a && a != "complete" && a != "loaded") return; f = true; clearTimeout(t); try { Typekit.load(config) } catch (e) { } }; s.parentNode.insertBefore(tk, s)
+    })(document);
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Jade City Hashimoto</title>
+  <style>
+    /*  */
+    .ggskin_hotspot {
+      opacity: 1 !important;
+    }
+  </style>
+</head>
+
+<body style="margin: 0; padding:0;">
+  <div id="root"></div>
+
+  <div id="container" class="isReady" style="margin: 0; padding:0;"></div>
+
+  <script src="pano/pano2vr_player.js"></script>
+  <script src="pano/skin.js"></script>
+  <script src="webxr/three.min.js"></script>
+  <script src="webxr/webxr-polyfill.min.js"></script>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <script type="text/javascript">
+
+    // create the panorama player with the container
+    pano = new pano2vrPlayer("container");
+    // add the skin object
+    skin = new pano2vrSkin(pano);
+    // load the configuration
+
+    window.addEventListener("load", function () {
+      pano.readConfigUrlAsync("pano.xml");
+    });
+    if (window.navigator.userAgent.match(/Safari/i)) {
+      // fix for white borders, rotation on iPhone
+      function iosHfix(e) {
+        window.scrollTo(0, 1);
+        var container = document.getElementById("container");
+        var oh = container.offsetHeight;
+        document.documentElement.style.setProperty('height', '100vh');
+        if (oh != container.offsetHeight) {
+          container.style.setProperty('height', "100vh");
+        } else {
+          container.style.setProperty('height', "100vh");
+        }
+        window.scrollTo(0, 0);
+        pano.setViewerSize(container.offsetWidth, container.offsetHeight);
+      };
+      setTimeout(iosHfix, 0);
+      setTimeout(iosHfix, 100);
+      window.addEventListener("resize", function () {
+        setTimeout(iosHfix, 0);
+        // hide toolbar on iPad happens with a delay
+        setTimeout(iosHfix, 500);
+        setTimeout(iosHfix, 1000);
+        setTimeout(iosHfix, 2000);
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+.App {
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+#container {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.appLogo {
+  pointer-events: auto;
+}

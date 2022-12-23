@@ -1,0 +1,14 @@
+.Logo {
+  bottom: 14px;
+  display: inline-block;
+  left: 50%;
+  margin: 0;
+  position: fixed;
+  transform: translateX(-50%);
+  z-index: 600;
+}
+
+.Logo img {
+  opacity: 0.8;
+  width: 80px;
+}
