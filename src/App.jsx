@@ -75,7 +75,7 @@ class App extends React.Component {
     }, 1600)
   }
 
-  nodeChangeHandler(node) {
+  nodeChangeHandler(node, isChangeViewpoint = false) {
     console.log('nodeChangeHandler -- ')
     if (!node) return false
     window.pano.openNext('{' + node + '}')
@@ -83,12 +83,15 @@ class App extends React.Component {
     console.log(view, window.pano.getPan())
     if(window.pano.getPan() != view.pan){
       window.pano.changePan(window.pano.getPan() + view.pan)
+      window.pano.setFov(view.fov)
     }
-    /*
-    setTimeout(() => {
-      window.pano.stopAutorotate()
-    }, 1200)
-    */
+    
+    // if(isChangeViewpoint){
+      window.pano.startAutorotate(0.15)
+      setTimeout(() => {
+        window.pano.stopAutorotate()
+      }, 1200)
+    // }
     this.setState({
       currentNode: node,
     })
@@ -96,7 +99,10 @@ class App extends React.Component {
 
   viewPointChangeHandler(viewPoint){
     if (!viewPoint) return false
-    this.nodeChangeHandler('node' + Config.panoNodes[viewPoint][this.state.currentInteriorColor])
+    this.nodeChangeHandler(
+      'node' + Config.panoNodes[viewPoint][this.state.currentInteriorColor],
+      true
+    )
     this.setState({
       currentViewPoint: viewPoint,
       showMap: !this.state.showMap,
@@ -105,7 +111,10 @@ class App extends React.Component {
 
   colorChangeHandler(colorKey){
     console.log(this.state.currentViewPoint, colorKey)
-    this.nodeChangeHandler('node' + Config.panoNodes[this.state.currentViewPoint][colorKey])
+    this.nodeChangeHandler(
+      'node' + Config.panoNodes[this.state.currentViewPoint][colorKey],
+      false
+    )
     this.setState({
       currentInteriorColor: colorKey
     })
