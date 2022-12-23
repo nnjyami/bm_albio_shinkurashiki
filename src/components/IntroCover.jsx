@@ -1,7 +1,7 @@
 import { jsx, css, keyframes } from '@emotion/react'
 import Config from '../Config'
 
-import LogoSvg from '../assets/logo_2.svg'
+import LogoSvg from '../assets/logo.svg'
 
 function IntroCover(props) {
   const c = ["IntroCover"]

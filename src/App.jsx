@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 
+import Config from './Config'
+
 import { MODE } from './config/modeConfig'
 
-import IntroCover from './components/IntroCover'
-import SideText from './components/SideText'
-import Nav from './components/Nav'
-import LocalNav from './components/LocalNav'
 import ContentsNav from './components/ContentsNav'
+import InteriorColorNav from './components/InteriorColorNav'
+import IntroCover from './components/IntroCover'
+import LocalNav from './components/LocalNav'
+import Nav from './components/Nav'
+import SideText from './components/SideText'
 import VrMap from './components/VrMap'
 import WalkThroughContents from './components/WalkThroughContents'
-import TreeNav from './components/TreeNav'
 
 import './css/normalize.css'
 import './css/App.css'
@@ -19,8 +21,10 @@ class App extends React.Component {
     super(props)
     this.state = {
       currentNode: null,
+      currentViewPoint: '012',
+      currentInteriorColor: 0,
       isReady: false,
-      mode: MODE.WALK_THROUGH,
+      mode: MODE.INTERIOR_COLOR,
       nodes: [],
       pano: {},
       showMap: false,
@@ -64,8 +68,7 @@ class App extends React.Component {
   }
 
   introAnimation() {
-    window.pano.openNext('{node6}')
-    window.pano.setDefaultView(164.5, 0, 90)
+    window.pano.openNext('{node22}')
     window.pano.startAutorotate(-0.15)
     setTimeout(() => {
       window.pano.stopAutorotate()
@@ -76,13 +79,36 @@ class App extends React.Component {
     console.log('nodeChangeHandler -- ')
     if (!node) return false
     window.pano.openNext('{' + node + '}')
-    window.pano.startAutorotate(0.15)
+    const view = Config.defaultView[this.state.currentViewPoint]
+    console.log(view, window.pano.getPan())
+    if(window.pano.getPan() != view.pan){
+      window.pano.changePan(window.pano.getPan() + view.pan)
+    }
+    /*
     setTimeout(() => {
       window.pano.stopAutorotate()
     }, 1200)
+    */
     this.setState({
-      currentNode: node
-    });
+      currentNode: node,
+    })
+  }
+
+  viewPointChangeHandler(viewPoint){
+    if (!viewPoint) return false
+    this.nodeChangeHandler('node' + Config.panoNodes[viewPoint][this.state.currentInteriorColor])
+    this.setState({
+      currentViewPoint: viewPoint,
+      showMap: !this.state.showMap,
+    })
+  }
+
+  colorChangeHandler(colorKey){
+    console.log(this.state.currentViewPoint, colorKey)
+    this.nodeChangeHandler('node' + Config.panoNodes[this.state.currentViewPoint][colorKey])
+    this.setState({
+      currentInteriorColor: colorKey
+    })
   }
 
   toggleMapVisible() {
@@ -133,22 +159,20 @@ class App extends React.Component {
           toggleMapVisible={this.toggleMapVisible.bind(this)}
           toggleContentsNavVisible={this.toggleContentsNavVisible.bind(this)}
         />
+        {this.state.mode === MODE.INTERIOR_COLOR &&
+          <InteriorColorNav
+            currentNode={this.state.currentNode}
+            currentViewPoint={this.state.currentViewPoint}
+            currentInteriorColor={this.state.currentInteriorColor}
+            isReady={this.state.isReady}
+            colorChangeHandler={this.colorChangeHandler.bind(this)}
+            nodeArray={Config.panoNodes[this.state.currentViewPoint]}
+          />
+        }
         {this.state.mode === MODE.WALK_THROUGH &&
           <WalkThroughContents
             currentNode={this.state.currentNode}
             isReady={this.state.isReady}
-            nodeChangeHandler={this.nodeChangeHandler.bind(this)}
-          />
-        }
-        {this.state.mode === MODE.TIME_SEASONS &&
-          <LocalNav
-            currentNode={this.state.currentNode}
-            nodeChangeHandler={this.nodeChangeHandler.bind(this)}
-          />
-        }
-        {this.state.mode === MODE.TREES_PLANTS &&
-          <TreeNav
-            currentNode={this.state.currentNode}
             nodeChangeHandler={this.nodeChangeHandler.bind(this)}
           />
         }
@@ -159,7 +183,7 @@ class App extends React.Component {
         />
         <VrMap
           currentNode={this.state.currentNode}
-          nodeChangeHandler={this.nodeChangeHandler.bind(this)}
+          viewPointChangeHandler={this.viewPointChangeHandler.bind(this)}
           showMap={this.state.showMap}
           toggleMapVisible={this.toggleMapVisible.bind(this)}
         />

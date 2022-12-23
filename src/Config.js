@@ -1,11 +1,14 @@
 import nodeCoordinate from './config/nodeCoordinate'
 import walkThroughPoints from './config/walkThroughPoints'
 import treeCoordinate from './config/treeCoordinate'
+import interioColorOptions from './config/interioColorOptions'
+import panoNodes from './config/panoNodes'
+import defaultView from './config/defaultView'
 
 export default {
   grid: 8,
   color: {
-    main: "#B19C83"
+    main: "#086845"
   },
   font: {
     family: 'classico-urw, sans-serif',
@@ -13,13 +16,18 @@ export default {
     style: 'normal',
   },
   mapSize: {
-    w: 182,
-    h: 838,
+    w: 760,
+    h: 1136,
   },
+  // 各オプションごとのnode
+  panoNodes,
+  defaultView,
   // Map 用のリンク座標
   nodeCoordinate,
   // Walk through のポイント
   walkThroughPoints,
   // Tree 設定
   treeCoordinate,
+  // インテリア カラー
+  interioColorOptions,
 }
