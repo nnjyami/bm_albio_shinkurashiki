@@ -136,7 +136,7 @@ const mapTitle = css`
   transition: left 650ms;
   transition-delay: 300ms;
   .isShow & {
-    left: ${Config.grid * 3}px;
+    left: ${Config.grid * 2}px;
   }
   .isAlphabet {
     font-family: ${Config.font.family};
@@ -144,23 +144,23 @@ const mapTitle = css`
     font-style: ${Config.font.style};
   }
   .type {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1;
     margin-bottom: ${Config.grid * 3.5}px;
   }
   .name {
-    font-size: 54px;
+    font-size: 40px;
     line-height: 1;
     margin-bottom: ${Config.grid}px;
   }
   .plan {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: ${Config.grid * 1.5}px;
   }
   .floor_space {
-    font-size: 14px;
+    font-size: 13px;
     .isAlphabet {
-      font-size: 24px;
+      font-size: 20px;
       padding: 0 ${Config.grid * 1}px;
     }
   }

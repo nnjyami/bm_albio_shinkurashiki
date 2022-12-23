@@ -44,10 +44,6 @@ const headerStyle = css`
   }
   li {
     color: ${Config.color.main};
-    font-family: ${Config.font.family};
-    font-weight: ${Config.font.weight};
-    font-style: ${Config.font.style};
-    text-shadow: 0 0 3px rgba(0,0,0,.2);
     list-style: none;
     &.navIndex {
       opacity: 1;
@@ -58,7 +54,7 @@ const headerStyle = css`
     }
     &.navMap {
       cursor: pointer;
-      font-size: 16px;
+      font-size: 14px;
       padding-top: 10px;
 
       transform: translateX(200%);

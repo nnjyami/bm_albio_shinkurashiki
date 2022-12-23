@@ -47,6 +47,7 @@ const InteriorColorNavStyle = css`
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255,255,255,.4);
     box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    color: #333;
     cursor: pointer;
     font-size: 14px;
     line-height: 1.2;
