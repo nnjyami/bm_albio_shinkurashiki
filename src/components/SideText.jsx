@@ -6,7 +6,6 @@ function SideText(props) {
   if (props.isReady) c.push('isReady')
   return (
     <ul className={c.join(' ')} css={SideTextStyle}>
-      <li className="sideText_name">LE JADE CITY HASHIMOTO</li>
       <li className="sideText_navigation">{props.currentMode}</li>
     </ul>
   )
@@ -15,6 +14,7 @@ function SideText(props) {
 const SideTextStyle = css`
   bottom: 0;
   display: flex;
+  justify-content: center;
   margin: 0;
   max-width: 400px;
   left: ${Config.grid * 1}px;
@@ -22,16 +22,16 @@ const SideTextStyle = css`
   padding: 0;
   position: absolute;
   transform-origin: top left;
-  transform: rotate(-90deg) translate(0, 0);
+  transform: rotate(-90deg) translate(50%, 0);
   transition: transform 850ms ease-out, opacity 500ms;
   transition-delay: 2.5s;
   width: 90%;
   &.isReady {
     opacity: 1;
-    transform: rotate(-90deg) translate(0, 0);
+    transform: rotate(-90deg) translate(50%, 0);
   }
   li {
-    color: rgba(255,255,255,.8);
+    color: ${Config.color.main};
     font-family: ${Config.font.family};
     font-weight: ${Config.font.weight};
     font-style: ${Config.font.style};
@@ -41,6 +41,7 @@ const SideTextStyle = css`
   }
   .sideText_name {
   }
+  /*
   .sideText_navigation {
     &::before {
       background-color: rgba(255,255,255,.65);
@@ -53,6 +54,7 @@ const SideTextStyle = css`
       width: ${Config.grid * 5}px;
     }
   }
+  */
 `
 
 export default SideText

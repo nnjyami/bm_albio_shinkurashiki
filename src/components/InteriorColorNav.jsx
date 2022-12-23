@@ -11,7 +11,7 @@ function InteriorColorNav(props) {
         key={color.key}
         onClick={() => props.colorChangeHandler(color.key)}
       >
-        <span>{`Color.${color.key + 1}`}</span>
+        <span>{`Color #${color.key + 1}`}</span>
         {color.name}
       </li>
     )
@@ -45,11 +45,13 @@ const InteriorColorNavStyle = css`
   li {
     background-color: rgba(255,255,255,.2);
     backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,.4);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0,0,0,.1);
-    color: #333;
+    color: ${Config.color.main};
     cursor: pointer;
     font-size: 12px;
+    font-feature-settings: "palt";
     line-height: 1.2;
     list-style: none;
     margin: 0 ${Config.grid}px;
@@ -61,6 +63,7 @@ const InteriorColorNavStyle = css`
     span {
       display: inline-block;
       font-size: 10px;
+      opacity: 0.6;
       width: 100%;
     }
     &.isCurrent {
