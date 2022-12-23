@@ -50,7 +50,7 @@ const InteriorColorNavStyle = css`
     box-shadow: 0 1px 2px rgba(0,0,0,.1);
     color: ${Config.color.main};
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
     font-feature-settings: "palt";
     line-height: 1.2;
     list-style: none;
@@ -62,7 +62,7 @@ const InteriorColorNavStyle = css`
     width: 24%;
     span {
       display: inline-block;
-      font-size: 10px;
+      font-size: 9px;
       opacity: 0.6;
       width: 100%;
     }

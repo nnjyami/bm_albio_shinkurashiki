@@ -73,10 +73,10 @@ const hambugerMenu = css`
   display: block;
   height: ${Config.grid * 3}px;
   margin: 0;
-  margin-right: 15px;
+  // margin-right: ${Config.grid * 1}px;
   pointer-events: auto;
   position: relative;
-  width: ${Config.grid * 4}px;
+  width: ${Config.grid * 3}px;
   z-index: 500;
 
   transform: translateX(-200%);
@@ -92,7 +92,7 @@ const hambugerMenu = css`
     background-color: ${Config.color.main};
     content: "";
     display: inline-block;
-    height: ${Config.grid * 4}px;
+    height: ${Config.grid * 3}px;
     left: 50%;
     position: absolute;
     top: 0;
