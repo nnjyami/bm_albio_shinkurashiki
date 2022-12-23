@@ -49,18 +49,18 @@ const InteriorColorNavStyle = css`
     box-shadow: 0 1px 2px rgba(0,0,0,.1);
     color: #333;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.2;
     list-style: none;
     margin: 0 ${Config.grid}px;
-    padding: ${Config.grid}px ${Config.grid * 1}px;
+    padding: ${Config.grid}px 0;
     pointer-events: auto;
     text-align: center;
     transition: all 400ms;
-    width: 22.5%;
+    width: 24%;
     span {
       display: inline-block;
-      font-size: 11px;
+      font-size: 10px;
       width: 100%;
     }
     &.isCurrent {
