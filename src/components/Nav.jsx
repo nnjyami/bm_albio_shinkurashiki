@@ -49,6 +49,7 @@ const headerStyle = css`
     list-style: none;
     &.navIndex {
       opacity: 1;
+      transform: translate(8px, -4px);
       width: 180px;
       &.isHide {
         opacity: 0;
@@ -58,7 +59,7 @@ const headerStyle = css`
       cursor: pointer;
       font-size: 14px;
       opacity: 1;
-      padding-top: 10px;
+      padding-top: 5px;
 
       transform: translateX(200%);
       transition: transform 850ms ease-out;

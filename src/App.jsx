@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 
 import Config from './Config'
 
-import { MODE } from './config/modeConfig'
-
 import ContentsNav from './components/ContentsNav'
 import InteriorColorNav from './components/InteriorColorNav'
 import IntroCover from './components/IntroCover'
@@ -23,8 +21,9 @@ class App extends React.Component {
       currentNode: null,
       currentViewPoint: '012',
       currentInteriorColor: 0,
+      currentRoomType: 'D',
       isReady: false,
-      mode: MODE.INTERIOR_COLOR,
+      mode: 'INTERIOR_COLOR_OPTIONS',
       nodes: [],
       pano: {},
       showMap: false,
@@ -60,9 +59,9 @@ class App extends React.Component {
   }
 
   modeChangeHandler(mode) {
-    if (!mode && !MODE[mode]) return false
+    if (!mode && !Config.modes[mode]) return false
     this.setState({
-      mode: MODE[mode],
+      mode: mode,
       showContentsNav: !this.state.showContentsNav,
     });
   }
@@ -168,7 +167,7 @@ class App extends React.Component {
           toggleMapVisible={this.toggleMapVisible.bind(this)}
           toggleContentsNavVisible={this.toggleContentsNavVisible.bind(this)}
         />
-        {this.state.mode === MODE.INTERIOR_COLOR &&
+        {this.state.mode === 'INTERIOR_COLOR' &&
           <InteriorColorNav
             currentNode={this.state.currentNode}
             currentViewPoint={this.state.currentViewPoint}
@@ -178,7 +177,7 @@ class App extends React.Component {
             nodeArray={Config.panoNodes[this.state.currentViewPoint]}
           />
         }
-        {this.state.mode === MODE.WALK_THROUGH &&
+        {this.state.mode === 'WALK_THROUGH' &&
           <WalkThroughContents
             currentNode={this.state.currentNode}
             isReady={this.state.isReady}
@@ -186,12 +185,16 @@ class App extends React.Component {
           />
         }
         <ContentsNav
+          currentMode={this.state.mode}
+          currentRoomType={this.state.currentRoomType}
           showContentsNav={this.state.showContentsNav}
           toggleContentsNavVisible={this.toggleContentsNavVisible.bind(this)}
           modeChangeHandler={this.modeChangeHandler.bind(this)}
         />
         <VrMap
           currentNode={this.state.currentNode}
+          currentViewPoint={this.state.currentViewPoint}
+          currentRoomType={this.state.currentRoomType}
           viewPointChangeHandler={this.viewPointChangeHandler.bind(this)}
           showMap={this.state.showMap}
           toggleMapVisible={this.toggleMapVisible.bind(this)}

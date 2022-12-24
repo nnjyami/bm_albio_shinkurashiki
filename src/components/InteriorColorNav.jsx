@@ -28,7 +28,7 @@ function InteriorColorNav(props) {
 const InteriorColorNavStyle = css`
   left: 0;
   position: absolute;
-  bottom: ${Config.grid * 1}px;
+  bottom: ${Config.grid * 2}px;
   pointer-events: auto;
   width: 100%;
   z-index: 10;
@@ -37,24 +37,25 @@ const InteriorColorNavStyle = css`
   }
   ul {
     display: flex;
-    justify-content: space-around;
-    margin: 0;
+    justify-content: space-between;
+    margin: 0 auto;
     padding: 0;
-    width: 100%;
+    width: calc(100% - ${Config.grid * 3}px);
   }
   li {
-    background-color: rgba(255,255,255,.2);
+    background-color: ${Config.color.main};
     backdrop-filter: blur(4px);
     border: 1px solid rgba(255,255,255,.15);
     border-radius: 2px;
     box-shadow: 0 1px 2px rgba(0,0,0,.1);
-    color: ${Config.color.main};
+    color: #FFF;
     cursor: pointer;
     font-size: 11px;
     font-feature-settings: "palt";
     line-height: 1.2;
     list-style: none;
     margin: 0 ${Config.grid}px;
+    opacity: 0.85;
     padding: ${Config.grid}px 0;
     pointer-events: auto;
     text-align: center;
@@ -67,8 +68,8 @@ const InteriorColorNavStyle = css`
       width: 100%;
     }
     &.isCurrent {
-      background-color: rgba(255,255,255,.8);
       box-shadow: 0 2px 8px rgba(0,0,0,.5);
+      // opacity: 1;
       transform: translateY(${Config.grid * 1.5 * (-1)}px);
     }
   }

@@ -4,6 +4,8 @@ import treeCoordinate from './config/treeCoordinate'
 import interioColorOptions from './config/interioColorOptions'
 import panoNodes from './config/panoNodes'
 import defaultView from './config/defaultView'
+import roomTypes from './config/roomTypes'
+import modes from './config/modes'
 
 export default {
   grid: 8,
@@ -19,9 +21,11 @@ export default {
     w: 760,
     h: 1136,
   },
+  modes,
   // 各オプションごとのnode
   panoNodes,
   defaultView,
+  roomTypes,
   // Map 用のリンク座標
   nodeCoordinate,
   // Walk through のポイント

@@ -12,23 +12,24 @@ function VrMap(props) {
       top: 100 * value.y / Config.mapSize.h + '%',
       left: 100 * value.x / Config.mapSize.w + '%',
     }
-    const css = [styles.pointLink]
-    if (props.currentNode == v) css.push(styles.isCurrent)
+    const c = ['pointLink']
+    if (props.currentViewPoint == v) c.push('isCurrent')
     return (
       <li
         key={v}
-        className="pointLink"
+        className={c.join(' ')}
         style={position}
         onClick={() => props.viewPointChangeHandler(v)}></li>
     )
   })
+  const room = Config.roomTypes[props.currentRoomType]
   return (
     <nav className={mapClass} css={mapStyle}>
       <ul css={mapTitle}>
         <li className="type">ルームプラン</li>
-        <li className="name isAlphabet">Type A</li>
-        <li className="plan isAlphabet">4LDK + SC</li>
-        <li className="floor_space">住居専有面積<span className="isAlphabet">82.04</span>㎡</li>
+        <li className="name isAlphabet">{room.name}</li>
+        <li className="plan isAlphabet">{room.plan}</li>
+        <li className="floor_space">住居専有面積<span className="isAlphabet">{room.space}</span>㎡</li>
       </ul>
       <p css={closeBtn} onClick={() => props.toggleMapVisible()}></p>
       <div className="mapWrap">
@@ -113,10 +114,16 @@ const mapStyle = css`
     border-radius: 50%;
     box-shadow: -2px 0 6px 2px rgba(0,0,0,.4);
     cursor: pointer;
-    height: 18px;
+    height: 16px;
     list-style: none;
     position: absolute;
-    width: 18px;
+    width: 16px;
+    &.isCurrent {
+      animation: ${ripple2} 1.5s ease infinite;
+      background-color: ${Config.color.main};
+      height: 10px;
+      width: 10px;
+    }
   }
   .mapImage {
     height: auto;

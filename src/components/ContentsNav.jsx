@@ -8,6 +8,63 @@ import LogoSvg from '../assets/logo.svg'
 function ContentsNav(props) {
   const navClass = ["contentsNav"]
   if (props.showContentsNav) navClass.push("isShow")
+
+  // 各RoomType内のサブコンテンツ
+  const subContentsNav = Object.keys(Config.modes)
+                        .filter(
+                          mode => Config.modes[mode].isSubContents && 
+                          Config.modes[mode].parent === 'ROOM_PLAN'
+                        ).map(contentKey => {
+                          const c = ['contentsNav']
+                          if(contentKey === props.currentMode) c.push('isCurrent')
+                          return(
+                            <li className={c.join(' ')} 
+                                css={contentsNavLink}
+                                onClick={() => props.modeChangeHandler(contentKey)}>
+                              <span
+                                className="lead" 
+                                css={contentsNavLinkLead}>{Config.modes[contentKey].title}</span>
+                              <p className="description" css={contentsNavLinkDec}><span>{Config.modes[contentKey].description}</span></p>
+                            </li>
+                          )
+                        });
+  // RoomTypeごとにナビゲーション生成
+  const roomNav = Object.keys(Config.roomTypes).map(roomKey => {
+    const c = ['roomTab']
+    if(roomKey === props.currentRoomType) c.push('isCurrent')
+    return(
+      <li className={c.join(' ')}>
+        {Config.roomTypes[roomKey].name}
+      </li>
+    )
+  })
+  // コンテンツ
+  const nav = Object.keys(Config.modes)
+              .filter(
+                mode => !Config.modes[mode].isSubContents
+              )
+              .map(mode => {
+                const c = ['contentsNav']
+                if(mode === props.currentMode) c.push('isCurrent')
+                return(
+                  <li className={c.join(' ')} css={contentsNavLink}
+                    onClick={() => props.modeChangeHandler(mode)}>
+                    <span className="lead" css={contentsNavLinkLead}>{Config.modes[mode].title}</span>
+                    <p className="description" css={contentsNavLinkDec}><span>{Config.modes[mode].description}</span></p>
+                    {
+                      mode === 'ROOM_PLAN' && <>
+                        <ul css={roomTabs}>
+                          {roomNav}
+                        </ul>
+                        <ul css={subContents}>
+                          {subContentsNav}
+                        </ul>
+                      </>
+                    }
+                  </li>
+                )
+              });
+
   return (
     <nav className={navClass.join(' ')} css={contentsNav}>
       <p className="contentsNavTitle">
@@ -17,40 +74,7 @@ function ContentsNav(props) {
           src={LogoSvg} />
       </p>
       <ul>
-        <li className="contentsNav"
-          css={contentsNavLink}
-          onClick={() => props.modeChangeHandler('WALK_THROUGH')}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>ALBIO GARDEN</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>MISAWAの分譲マンション/アルビオ・ガーデン</span></p>
-        </li>
-        <li className="contentsNav"
-          css={contentsNavLink}
-          onClick={() => props.modeChangeHandler('WALK_THROUGH')}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Concept</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>コンセプト</span></p>
-        </li>
-        <li className="contentsNav" css={contentsNavLink}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Room Plan</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>4種類のルームプラン</span></p>
-        </li>
-        <li className="contentsNav" css={contentsNavLink}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Room Tour</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>ルームツアー</span></p>
-        </li>
-        <li className="contentsNav"
-          css={contentsNavLink}
-          onClick={() => props.modeChangeHandler('TREES_PLANTS')}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Interior Color Options</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>選べるカラーオプション</span></p>
-        </li>
-        <li className="contentsNav" css={contentsNavLink}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Facilities</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>設備</span></p>
-        </li>
-        <li className="contentsNav" css={contentsNavLink}>
-          <span className="contentsNavLinkLead" css={contentsNavLinkLead}>Location</span>
-          <p className="contentsNavLinkDec" css={contentsNavLinkDec}><span>ロケーション</span></p>
-        </li>
+        {nav}
         <li className="contentsNav" css={contentsNavLink}>
           <ul className="contentsSubLinks">
             <li><a href="https://misawa-chugoku.jp/albio/shinkurashikiekimae/outline/">→ 物件概要</a></li>
@@ -100,7 +124,7 @@ const contentsNav = css`
   left: -100%;
   height: 100%;
   margin: 0;
-  padding: ${Config.grid * 8}px 0 0;
+  padding: ${Config.grid * 5}px 0 0;
   position: absolute;
   top: 0;
   transition: all 550ms;
@@ -111,10 +135,10 @@ const contentsNav = css`
     backdrop-filter: blur(4px);
     left: 0;
     transition: all 750ms;
-    .contentsNavLinkLead {
+    .lead {
       transform: translateY(0);
     }
-    .contentsNavLinkDec {
+    .description {
       transform: translateX(0);
       span {
         transform: translateX(0);
@@ -125,7 +149,6 @@ const contentsNav = css`
     margin: 0;
   }
   ul {
-    margin: 0;
     padding: 0;
     li {
       pointer-events: auto;
@@ -135,8 +158,8 @@ const contentsNav = css`
     color: #FFF;
     font-size: 14px;
     font-weight: bold;
-    margin: 0 0 ${Config.grid * 3}px;
-    padding: 0 ${Config.grid * 3}px 0;
+    margin: 0 0 ${Config.grid * 2}px;
+    padding: 0 ${Config.grid * 2}px 0;
     position: relative;
     text-align: center;
     z-index: 200;
@@ -193,6 +216,7 @@ const contentsNavLinkLead = css`
 const contentsNavLinkDec = css`
   color: rgba(255,255,255,.8);
   display: inline-block;
+  font-size: 12px;
   line-height: 1.2;
   overflow: hidden;
   transform: translateX(-100%);
@@ -201,6 +225,43 @@ const contentsNavLinkDec = css`
     display: inline-block;
     transform: translateX(100%);
     transition: transform 1.2s;
+  }
+`
+const roomTabs = css`
+  color: rgba(255,255,255,1);
+  display: flex;
+  justify-content: space-between;
+  margin-top: ${Config.grid * 1}px;
+  width: 100%;
+  .roomTab {
+    border: 1px solid rgba(255,255,255,.3);
+    border-bottom: none;
+    line-height: ${Config.grid * 4}px;
+    list-style: none;
+    padding: 0 ${Config.grid * 1.5}px;
+    text-align: center;
+    &.isCurrent {
+      background-color: rgba(255,255,255,.65);
+      color: rgba(50,50,50,1);
+    }
+  }
+`
+const subContents = css`
+  background-color: rgba(255,255,255,.65);
+  line-height: 1.3;
+  margin-bottom: ${Config.grid * 2}px;
+  .contentsNav {
+    padding: ${Config.grid * 0.5}px ${Config.grid * 2}px;
+    .lead {
+      color: rgba(50,50,50,.8);
+      font-size: 16px;
+      line-height: 1.2;
+    }
+    .description {
+      color: rgba(50,50,50,.65);
+      font-size: 10px;
+      line-height: 1;
+    }
   }
 `
 
