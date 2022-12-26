@@ -22,29 +22,31 @@ function RoomTourNav(props) {
 }
 
 const RoomTourNavStyle = css`
-  bottom: ${Config.grid * 2}px;
-  padding-top: ${Config.grid * 3.5}px;
+  background: linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.7));
+  bottom: 0;
+  padding: ${Config.grid * 2}px 0 ${Config.grid * 2}px;
   position: absolute;
-  right: ${Config.grid * 1.5}px;
-  width: calc(100% - ${Config.grid * 1.5 * 2}px);
+  right: 0;
+  width: 100%;
   .roomName {
     // background-color: rgba(255,255,255,.75);
     // backdrop-filter: blur(3px);
   }
   .roomNav {
+    align-items: center;
     display: flex;
     justify-content: space-between;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
-    width: 100%;
+    width: calc(100% - ${Config.grid * 1.5 * 2}px);
     li {
-      color: ${Config.color.main};
+      color: #FFF;
       list-style: none;
       padding: 0 ${Config.grid}px 0;
     }
     .prev,
     .next {
-      background-color: ${Config.color.mainBackground};
+      border: 1px solid rgba(255,255,255,.5);
       border-radius: 8px;
       color: #FFF;
       font-size: 11px;

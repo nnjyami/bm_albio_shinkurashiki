@@ -25,7 +25,7 @@ const SideTextStyle = css`
   padding: 0;
   position: absolute;
   transform-origin: top left;
-  transform: rotate(-90deg) translate(50%, 0);
+  transform: rotate(-90deg) translate(30%, 0);
   transition: transform 850ms ease-out, opacity 500ms;
   transition-delay: 2.5s;
   width: 90%;
