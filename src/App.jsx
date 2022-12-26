@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 
 import Config from './Config'
 
+import GlobalStyle from './components/GlobalStyle'
+
 import ContentsNav from './components/ContentsNav'
 import InteriorColorNav from './components/InteriorColorNav'
 import IntroCover from './components/IntroCover'
@@ -155,6 +157,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="vr"></div>
+        <GlobalStyle />
         <IntroCover isReady={this.state.isReady} />
         <SideText
           currentMode={this.state.mode}
