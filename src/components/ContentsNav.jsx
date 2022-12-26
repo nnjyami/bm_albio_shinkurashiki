@@ -18,7 +18,8 @@ function ContentsNav(props) {
                           const c = ['contentsNav']
                           if(contentKey === props.currentMode) c.push('isCurrent')
                           return(
-                            <li className={c.join(' ')} 
+                            <li key={contentKey}
+                                className={c.join(' ')} 
                                 css={contentsNavLink}
                                 onClick={() => props.modeChangeHandler(contentKey)}>
                               <span
@@ -33,7 +34,7 @@ function ContentsNav(props) {
     const c = ['roomTab']
     if(roomKey === props.currentRoomType) c.push('isCurrent')
     return(
-      <li className={c.join(' ')}>
+      <li key={roomKey} className={c.join(' ')}>
         {Config.roomTypes[roomKey].name}
       </li>
     )
@@ -47,7 +48,10 @@ function ContentsNav(props) {
                 const c = ['contentsNav']
                 if(mode === props.currentMode) c.push('isCurrent')
                 return(
-                  <li className={c.join(' ')} css={contentsNavLink}
+                  <li 
+                    key={mode}
+                    className={c.join(' ')} 
+                    css={contentsNavLink}
                     onClick={() => props.modeChangeHandler(mode)}>
                     <span className="lead" css={contentsNavLinkLead}>{Config.modes[mode].title}</span>
                     <p className="description" css={contentsNavLinkDec}><span>{Config.modes[mode].description}</span></p>
@@ -67,12 +71,10 @@ function ContentsNav(props) {
 
   return (
     <nav className={navClass.join(' ')} css={contentsNav}>
-      <p className="contentsNavTitle">
-        <ReactSVG 
-          style={{ fill: "#FFF!important" }}
-          className="svg" 
-          src={LogoSvg} />
-      </p>
+      <ReactSVG 
+        style={{ fill: "#FFF!important" }}
+        className="contentsNavTitle" 
+        src={LogoSvg} />
       <ul>
         {nav}
         <li className="contentsNav" css={contentsNavLink}>
@@ -124,7 +126,7 @@ const contentsNav = css`
   left: -100%;
   height: 100%;
   margin: 0;
-  padding: ${Config.grid * 5}px 0 0;
+  padding: ${Config.grid * 4}px 0 0;
   position: absolute;
   top: 0;
   transition: all 550ms;
@@ -158,13 +160,16 @@ const contentsNav = css`
     color: #FFF;
     font-size: 14px;
     font-weight: bold;
-    margin: 0 0 ${Config.grid * 2}px;
+    margin: 0 0 ${Config.grid * 1}px;
     padding: 0 ${Config.grid * 2}px 0;
     position: relative;
     text-align: center;
     z-index: 200;
     .st0 {
       fill: #FFF;
+    }
+    svg {
+      width: 200px;
     }
   }
   .contentsSubLinks,
