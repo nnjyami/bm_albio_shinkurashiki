@@ -21,7 +21,7 @@ export default {
     parent: 'ROOM_PLAN'
   },
   INTERIOR_COLOR_OPTIONS: {
-    title: 'Interior Color Options',
+    title: 'Color Options',
     description: '選べるカラーオプション',
     isSubContents: true,
     parent: 'ROOM_PLAN'
