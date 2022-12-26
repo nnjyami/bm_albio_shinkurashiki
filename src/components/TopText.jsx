@@ -83,7 +83,7 @@ const topTextStyle = css`
     margin: ${Config.grid * 2}px 0 ${Config.grid * 2}px;
     rt {
       font-size: 12px;
-      transform: translateY(-4px);
+      transform: translateY(-2px);
     }
   }
   .lead-sub {
