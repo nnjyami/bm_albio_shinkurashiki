@@ -6,7 +6,10 @@ function SideText(props) {
   if (props.isReady) c.push('isReady')
   return (
     <ul className={c.join(' ')} css={SideTextStyle}>
-      <li className="sideText_navigation">{props.currentMode}</li>
+      <li>{props.mode}</li>
+      <li>{props.roomType}</li>
+      <li>{props.color}</li>
+      <li>{props.viewPoint}</li>
     </ul>
   )
 }
@@ -37,7 +40,7 @@ const SideTextStyle = css`
     font-style: ${Config.font.style};
     font-size: 11px;
     list-style: none;
-    margin: 0;
+    margin: 0 0 0 ${Config.grid * 1.5}px;
   }
   .sideText_name {
   }
