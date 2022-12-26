@@ -11,7 +11,9 @@ import LocalNav from './components/LocalNav'
 import Nav from './components/Nav'
 import SideText from './components/SideText'
 import VrMap from './components/VrMap'
-import WalkThroughContents from './components/WalkThroughContents'
+import TopText from './components/TopText'
+import RoomTourNav from './components/RoomTourNav'
+
 
 import './css/normalize.css'
 import './css/App.css'
@@ -21,11 +23,11 @@ class App extends React.Component {
     super(props)
     this.state = {
       currentNode: null,
-      currentViewPoint: '012',
+      currentViewPoint: '016',
       currentInteriorColor: 0,
       currentRoomType: 'D',
       isReady: false,
-      mode: 'INTERIOR_COLOR_OPTIONS',
+      mode: 'TOP',
       nodes: [],
       pano: {},
       showMap: false,
@@ -64,26 +66,43 @@ class App extends React.Component {
     if (!mode && !Config.modes[mode]) return false
     this.setState({
       mode: mode,
-      showContentsNav: !this.state.showContentsNav,
+      showContentsNav: false,
     });
+    this.updatePinoByMode(mode);
   }
 
   introAnimation() {
-    window.pano.openNext('{node22}')
-    window.pano.startAutorotate(-0.15)
+    window.pano.openNext('{node5}')
+    window.pano.startAutorotate(-0.24)
     setTimeout(() => {
       window.pano.stopAutorotate()
     }, 1600)
   }
 
-  nodeChangeHandler(node, isChangeViewpoint = false) {
+  updatePinoByMode(mode) {
+    switch(mode){
+      case 'Top':
+        this.viewPointChangeHandler('016')
+        break;
+      
+      case 'ROOM_TOUR':
+        this.viewPointChangeHandler('012')
+        break;
+      
+      case 'INTERIOR_COLOR_OPTIONS':
+        this.viewPointChangeHandler('013')
+        break;
+    }
+  }
+
+  nodeChangeHandler(node, viewPoint = this.state.currentViewPoint) {
     console.log('nodeChangeHandler -- ')
     if (!node) return false
     window.pano.openNext('{' + node + '}')
-    const view = Config.defaultView[this.state.currentViewPoint]
-    console.log(view, window.pano.getPan())
+    const view = Config.defaultView[viewPoint]
     if(window.pano.getPan() != view.pan){
       window.pano.changePan(window.pano.getPan() + view.pan)
+      // window.pano.setPan(view.pan)
       window.pano.setFov(view.fov)
     }
     
@@ -102,11 +121,11 @@ class App extends React.Component {
     if (!viewPoint) return false
     this.nodeChangeHandler(
       'node' + Config.panoNodes[viewPoint][this.state.currentInteriorColor],
-      true
+      viewPoint
     )
     this.setState({
       currentViewPoint: viewPoint,
-      showMap: !this.state.showMap,
+      showMap: false,
     })
   }
 
@@ -114,7 +133,7 @@ class App extends React.Component {
     console.log(this.state.currentViewPoint, colorKey)
     this.nodeChangeHandler(
       'node' + Config.panoNodes[this.state.currentViewPoint][colorKey],
-      false
+      this.state.currentViewPoint
     )
     this.setState({
       currentInteriorColor: colorKey
@@ -159,18 +178,13 @@ class App extends React.Component {
         <div className="vr"></div>
         <GlobalStyle />
         <IntroCover isReady={this.state.isReady} />
-        <SideText
-          currentMode={this.state.mode}
-          isReady={this.state.isReady}
-          showContentsNav={this.state.showContentsNav}
-        />
         <Nav
           isReady={this.state.isReady}
           showContentsNav={this.state.showContentsNav}
           toggleMapVisible={this.toggleMapVisible.bind(this)}
           toggleContentsNavVisible={this.toggleContentsNavVisible.bind(this)}
         />
-        {this.state.mode === 'INTERIOR_COLOR' &&
+        {this.state.mode === 'INTERIOR_COLOR_OPTIONS' &&
           <InteriorColorNav
             currentNode={this.state.currentNode}
             currentViewPoint={this.state.currentViewPoint}
@@ -180,11 +194,25 @@ class App extends React.Component {
             nodeArray={Config.panoNodes[this.state.currentViewPoint]}
           />
         }
-        {this.state.mode === 'WALK_THROUGH' &&
-          <WalkThroughContents
-            currentNode={this.state.currentNode}
+        {this.state.mode === 'TOP' && <TopText
+          isReady={this.state.isReady}
+          modeChangeHandler={this.modeChangeHandler.bind(this)}
+          />
+        }
+        {this.state.mode !== 'TOP' && <SideText
+            mode={Config.modes[this.state.mode].title}
+            roomType={Config.roomTypes[this.state.currentRoomType].name}
+            color={Config.interioColorOptions.find(
+                color => color.key === this.state.currentInteriorColor).name}
+            viewPoint={Config.viewPoints[this.state.currentViewPoint].name}
             isReady={this.state.isReady}
-            nodeChangeHandler={this.nodeChangeHandler.bind(this)}
+            showContentsNav={this.state.showContentsNav}
+          />
+        }
+        {this.state.mode === 'ROOM_TOUR' && <RoomTourNav
+          currentViewPoint={this.state.currentViewPoint}
+          roomName={Config.viewPoints[this.state.currentViewPoint].name}
+          viewPointChangeHandler={this.viewPointChangeHandler.bind(this)}
           />
         }
         <ContentsNav
