@@ -52,7 +52,9 @@ function ContentsNav(props) {
                     key={mode}
                     className={c.join(' ')} 
                     css={contentsNavLink}
-                    onClick={() => props.modeChangeHandler(mode)}>
+                    onClick={() => {
+                      if(mode !== 'ROOM_PLAN') props.modeChangeHandler(mode)
+                    }}>
                     <span className="lead" css={contentsNavLinkLead}>{Config.modes[mode].title}</span>
                     <p className="description" css={contentsNavLinkDec}><span>{Config.modes[mode].description}</span></p>
                     {
