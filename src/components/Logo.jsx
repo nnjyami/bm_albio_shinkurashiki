@@ -23,7 +23,7 @@ const logoStyle = css`
   transform-origin: center;
   transform: scale(1.5);
   transition: transform 1600ms ease-out, opacity 1000ms;
-  transition-delay: 2s;
+  transition-delay: 1s;
 
   &.isReady {
     opacity: 1;
