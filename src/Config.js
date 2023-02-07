@@ -12,7 +12,8 @@ import modes from './config/modes'
 export default {
   grid: 8,
   color: {
-    main: "#086845",
+    main: "#000",
+    accent: "rgb(185, 164, 71)",
     mainBackground: "rgba(8, 104, 69, .6)",
   },
   font: {

@@ -133,7 +133,7 @@ const contentsNav = css`
   top: 0;
   transition: all 550ms;
   width: ${Config.grid * 40}px;
-  z-index: 90;
+  z-index: 250;
   &.isShow {
     background-color: rgba(45, 45, 45, .4);
     backdrop-filter: blur(4px);

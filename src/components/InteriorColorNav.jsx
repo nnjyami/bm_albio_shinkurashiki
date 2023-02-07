@@ -11,7 +11,6 @@ function InteriorColorNav(props) {
         key={color.key}
         onClick={() => props.colorChangeHandler(color.key)}
       >
-        <span>{`Color #${color.key + 1}`}</span>
         {color.name}
       </li>
     )
@@ -26,9 +25,6 @@ function InteriorColorNav(props) {
 }
 
 const InteriorColorNavStyle = css`
-  left: 0;
-  position: absolute;
-  bottom: ${Config.grid * 2}px;
   pointer-events: auto;
   width: 100%;
   z-index: 10;
@@ -38,39 +34,33 @@ const InteriorColorNavStyle = css`
   ul {
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
-    padding: 0;
-    width: calc(100% - ${Config.grid * 3}px);
+    margin: 0;
+    padding: ${Config.grid * 0.5}px 0;
+    width: 100%;
   }
   li {
-    background-color: ${Config.color.main};
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 2px;
+    align-items: center;
+    border: 1px solid rgba(255,255,255,.8);
+    border-radius: 6px;
     box-shadow: 0 1px 2px rgba(0,0,0,.1);
     color: #FFF;
     cursor: pointer;
-    font-size: 11px;
+    display: flex;
+    font-size: 12px;
     font-feature-settings: "palt";
-    line-height: 1.2;
+    justify-content: center;
+    line-height: 0.8;
     list-style: none;
-    margin: 0 ${Config.grid}px;
+    margin: 0;
     opacity: 0.85;
-    padding: ${Config.grid}px 0;
+    padding: ${Config.grid * 0.5}px 0;
     pointer-events: auto;
     text-align: center;
     transition: all 400ms;
-    width: 24%;
-    span {
-      display: inline-block;
-      font-size: 9px;
-      opacity: 0.6;
-      width: 100%;
-    }
+    width: 23%;
     &.isCurrent {
-      box-shadow: 0 2px 8px rgba(0,0,0,.5);
-      // opacity: 1;
-      transform: translateY(${Config.grid * 1.5 * (-1)}px);
+      background-color: rgba(0,0,0,.55);
+      border: 1px solid rgba(0,0,0,.8);
     }
   }
 `

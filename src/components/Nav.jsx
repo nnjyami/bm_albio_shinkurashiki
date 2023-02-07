@@ -42,7 +42,7 @@ const headerStyle = css`
     pointer-events: auto;
     position: relative;
     width: calc(100% - ${Config.grid * 1.5 * 2}px);
-    z-index: 100;
+    z-index: 300;
   }
   li {
     color: ${Config.color.main};

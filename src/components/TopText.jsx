@@ -36,7 +36,7 @@ const topTextStyle = css`
   padding: ${Config.grid * 2}px;
   pointer-events: auto;
   position: absolute;
-  top: 35%;
+  top: 20%;
   transition: all 1000ms ease-out;
   transition-delay: 1.5s;
   transform: scale(1.4);
