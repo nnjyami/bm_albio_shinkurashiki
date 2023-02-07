@@ -137,6 +137,9 @@ const mapStyle = css`
     overflow: scroll;
     width: 100%;
     z-index: 30;
+
+    max-width: 390px;
+    margin: 0 auto;
   }
   .pointLinkWrap {
     height: 583px;
