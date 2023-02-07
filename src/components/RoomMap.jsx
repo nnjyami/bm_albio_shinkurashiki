@@ -185,7 +185,7 @@ const mapTitle = css`
   padding: ${Config.grid * 0.5}px ${Config.grid * 2}px;
   position: absolute;
   text-shadow: 0 0 3px rgba(0,0,0,.2);
-  top: ${Config.grid * (6 + 1)}px;
+  top: ${Config.grid * (5 + 1)}px;
   transition: left 650ms;
   transition-delay: 300ms;
   width: calc(100% - ${Config.grid * (1 + 2) * 2}px);
@@ -239,7 +239,7 @@ const colorOption = css`
   padding: ${Config.grid * 0.5}px ${Config.grid * 2}px;
   position: absolute;
   text-shadow: 0 0 3px rgba(0,0,0,.2);
-  top: ${Config.grid * (6 * 2) + 2}px;
+  top: ${Config.grid * (4 + 7) + 2}px;
   transition: left 650ms;
   transition-delay: 300ms;
   width: calc(100% - ${Config.grid * (1 + 2) * 2}px);
@@ -288,7 +288,7 @@ const roomTabs = css`
   border-bottom: 1px solid rgba(0,0,0,.55);
   color: rgba(255,255,255,1);
   display: flex;
-  height: ${Config.grid * 5}px;
+  height: ${Config.grid * 4}px;
   justify-content: space-between;
   margin: 0;
   padding: ${Config.grid * 1}px ${Config.grid * 1}px 0;
@@ -297,7 +297,7 @@ const roomTabs = css`
     background-color: rgba(0,0,0,.15);
     border-bottom: none;
     border-radius: 3px 3px 0 0;
-    line-height: ${Config.grid * 5}px;
+    line-height: ${Config.grid * 4}px;
     list-style: none;
     padding: 0 ${Config.grid * 2.5}px;
     text-align: center;
