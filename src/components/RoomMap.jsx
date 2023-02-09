@@ -46,9 +46,11 @@ const RoomMap = (props) => {
   })
   return (
     <nav className={mapClass} css={mapStyle}>
-      <ul css={roomTabs}>
-        {roomNav}
-      </ul>
+      <div css={roomTabs}>
+        <ul className="nav">
+          {roomNav}
+        </ul>
+      </div>
       <ul css={mapTitle}>
         <li className="plan isAlphabet">{room.plan}</li>
         <li className="floor_space">住居専有面積<span className="isAlphabet">{room.space}</span>㎡</li>
@@ -140,6 +142,11 @@ const mapStyle = css`
 
     max-width: 390px;
     margin: 0 auto;
+
+    @media (min-width: 768px) {
+      width: 390px;
+      margin: 0 auto 0 50%;
+    }
   }
   .pointLinkWrap {
     height: 583px;
@@ -193,6 +200,9 @@ const mapTitle = css`
   transition-delay: 300ms;
   width: calc(100% - ${Config.grid * (1 + 2) * 2}px);
   z-index: 50;
+  @media (min-width: 768px) {
+    width: 400px;
+  }
   .isShow & {
     left: ${Config.grid * 2}px;
   }
@@ -253,6 +263,9 @@ const colorOption = css`
   .nav {
     width: calc(100% - ${Config.grid * 5 + 0.5}px);
   }
+  @media (min-width: 768px) {
+    width: 400px;
+  }
 `
 
 const closeBtn = () => [
@@ -289,17 +302,28 @@ const closeBtn = () => [
 const roomTabs = css`
   background-color: rgba(0,0,0,.15);
   border-bottom: 1px solid rgba(0,0,0,.55);
-  color: rgba(255,255,255,1);
-  display: flex;
-  height: ${Config.grid * 4}px;
-  justify-content: space-between;
+  box-shadow: 0 -1px 2px rgba(0, 0, 0, .2) inset;
+  height: ${Config.grid * 5}px;
+  padding: 0;
   margin: 0;
-  padding: ${Config.grid * 1}px ${Config.grid * 1}px 0;
-  width: calc(100% - ${Config.grid * 1 * 2}px);
+  width: 100%;
+  .nav {
+    color: rgba(255,255,255,1);
+    display: flex;
+    height: ${Config.grid * 4}px;
+    justify-content: space-between;
+    margin: 0;
+    padding: ${Config.grid * 1}px ${Config.grid * 1}px 0;
+    width: calc(100% - ${Config.grid * 1 * 2}px);
+    @media (min-width: 768px) {
+      width: 400px;
+    }
+  }
   .roomTab {
     background-color: rgba(0,0,0,.15);
     border-bottom: none;
     border-radius: 3px 3px 0 0;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .4);
     line-height: ${Config.grid * 4}px;
     list-style: none;
     padding: 0 ${Config.grid * 2.5}px;
