@@ -26,7 +26,7 @@ class App extends React.Component {
       currentNode: null,
       currentViewPoint: '013',
       currentInteriorColor: 0,
-      currentRoomType: 'D',
+      currentRoomType: 'A',
       isReady: false,
       mode: 'TOP',
       nodes: [],
