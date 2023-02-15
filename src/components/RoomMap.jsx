@@ -71,14 +71,14 @@ const RoomMap = (props) => {
       {
         /*
       <p css={closeBtn} onClick={() => props.toggleMapVisible()}></p>
-       */
-      }
       <div className="mapWrap" ref={scroll.outerContentRef}>
         <ul className="pointLinkWrap">
           {points}
         </ul>
         <img className="mapImage" src={plan} ref={scroll.innerContentRef} />
       </div>
+      */
+      }
     </nav>
   )
 }
@@ -118,7 +118,7 @@ const mapStyle = css`
   backdrop-filter: blur(4px);
   // border-left: 1px solid ${Config.color.main};
   box-shadow: 0 -2px 3px rgba(0, 0, 0, .2);
-  height: 40%;
+  height: 138px;
   position: absolute;
   bottom: 0;
   z-index: 200;
